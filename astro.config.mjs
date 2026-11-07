@@ -3,7 +3,7 @@ import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://seu-dominio.com',
+  site: 'https://thiago-fuganti.vercel.app',
   i18n: {
     defaultLocale: 'it',
     locales: ['it', 'en'],

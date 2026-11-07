@@ -4,6 +4,8 @@ My personal portfolio: a fast, accessible static site that presents who I am, th
 
 Built with Astro and Tailwind CSS.
 
+**[Live site →](https://thiago-fuganti.vercel.app)**
+
 <p align="center">
   <img src="docs/screenshots/home.png" alt="Portfolio home page in the dark theme" width="420" />
   <img src="docs/screenshots/home-light.png" alt="Portfolio home page in the light theme" width="420" />

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://seu-dominio.com/sitemap-index.xml
+Sitemap: https://thiago-fuganti.vercel.app/sitemap-index.xml
