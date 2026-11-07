@@ -62,8 +62,8 @@ src/
 Requires Node.js 22.23.4 or newer. The project is developed on Node 23.
 
 ```bash
-git clone https://github.com/aversvs/portfolio-thiago-fuganti.git
-cd portfolio-thiago-fuganti
+git clone https://github.com/aversvs/portfolio.git
+cd portfolio
 npm install
 npm run dev
 ```
