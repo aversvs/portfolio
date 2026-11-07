@@ -89,4 +89,4 @@ To add a project, create a Markdown file with the same name in `src/content/proj
 
 To show a contact form next to the email button, create a free form on [Formspree](https://formspree.io) and set its URL in `formEndpoint` in `profile.ts`.
 
-The résumé (`public/cv.pdf`) is not tracked in git. Add it locally or upload it to the host before deploying.
+The résumé is `public/cv.pdf`. The "Download résumé" button only appears when `resume` in `profile.ts` points to a file.
