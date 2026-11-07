@@ -16,7 +16,7 @@ const field =
 
 <Section id="contact" title={t.title}>
   <div class:list={['grid gap-10 rounded-3xl border border-border bg-surface p-6 sm:p-10', profile.formEndpoint && 'md:grid-cols-2']}>
-    <div>
+    <div class="text-center sm:text-left">
       <p class="text-lg leading-relaxed text-muted">{t.text}</p>
       <a
         href={`mailto:${profile.email}`}
@@ -25,7 +25,7 @@ const field =
         {t.emailMe}
       </a>
       <p class="mt-3 text-sm text-muted">{profile.email}</p>
-      <div class="mt-6 -ml-2">
+      <div class="mt-6 flex justify-center sm:-ml-2 sm:justify-start">
         <SocialLinks size="md" />
       </div>
     </div>
