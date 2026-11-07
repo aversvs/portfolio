@@ -1,0 +1,93 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from './Hero.astro';
+import Section from './Section.astro';
+import ProjectCard from './ProjectCard.astro';
+import Contact from './Contact.astro';
+import { homePath, otherLang, ui, type Lang } from '../i18n/ui';
+import { content, profile } from '../data/profile';
+import { getProjects } from '../lib/projects';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = ui[lang];
+const c = content[lang];
+const projects = await getProjects(lang);
+---
+
+<Layout
+  lang={lang}
+  title={`${profile.name} — ${c.role}`}
+  description={c.seoDescription}
+  altHref={homePath(otherLang(lang))}
+>
+  <Hero lang={lang} />
+
+  <Section id="projects" title={t.projects.title} subtitle={t.projects.subtitle}>
+    <div class="grid gap-6 sm:grid-cols-2">
+      {projects.map((project) => <ProjectCard lang={lang} project={project} />)}
+    </div>
+  </Section>
+
+  <Section id="skills" title={t.skills.title}>
+    <div class="grid gap-6 sm:grid-cols-2">
+      {
+        c.skills.map((group) => (
+          <div class="rounded-2xl border border-border bg-surface p-6">
+            <h3 class="font-semibold">{group.group}</h3>
+            <ul class="mt-4 flex flex-wrap gap-2">
+              {group.items.map((item) => (
+                <li class="rounded-md border border-border px-2.5 py-1 text-sm text-muted">{item}</li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </div>
+  </Section>
+
+  <Section id="experience" title={t.experience.title}>
+    <ol class="relative space-y-10 border-l border-border pl-8">
+      {
+        c.experience.map((job) => (
+          <li class="relative">
+            <span class="absolute top-1.5 -left-[2.4rem] size-3 rounded-full border-2 border-bg bg-accent" aria-hidden="true" />
+            <p class="text-sm text-muted">{job.period}{job.location && ` · ${job.location}`}</p>
+            <h3 class="mt-1 text-lg font-semibold">
+              {job.role} <span class="font-normal text-muted">· {job.company}</span>
+            </h3>
+            <ul class="mt-3 list-disc space-y-1.5 pl-5 text-muted marker:text-accent">
+              {job.highlights.map((item) => <li>{item}</li>)}
+            </ul>
+          </li>
+        ))
+      }
+    </ol>
+
+    <div class="mt-14 grid gap-6 sm:grid-cols-2">
+      <div class="rounded-2xl border border-border bg-surface p-6">
+        <h3 class="font-semibold">{t.background.languages}</h3>
+        <ul class="mt-3 space-y-1.5 text-muted">
+          {
+            c.languages.map((language) => (
+              <li>
+                <span class="text-text">{language.name}</span> · {language.level}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+      <div class="rounded-2xl border border-border bg-surface p-6">
+        <h3 class="font-semibold">{t.background.education}</h3>
+        <ul class="mt-3 space-y-1.5 text-muted">
+          {c.education.map((item) => <li>{item}</li>)}
+        </ul>
+      </div>
+    </div>
+  </Section>
+
+  <Contact lang={lang} />
+</Layout>

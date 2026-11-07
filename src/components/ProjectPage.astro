@@ -1,0 +1,108 @@
+---
+import { render, type CollectionEntry } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+import Tags from './Tags.astro';
+import { homePath, otherLang, projectPath, ui, type Lang } from '../i18n/ui';
+import { profile } from '../data/profile';
+import { getProjects, slugOf } from '../lib/projects';
+
+interface Props {
+  lang: Lang;
+  entry: CollectionEntry<'projects'>;
+}
+
+const { lang, entry } = Astro.props;
+const t = ui[lang];
+const { title, summary, cover, coverAlt, tags, role, year, demo, repo } = entry.data;
+const slug = slugOf(entry.id);
+const { Content } = await render(entry);
+
+const all = await getProjects(lang);
+const index = all.findIndex((item) => item.id === entry.id);
+const next = all[(index + 1) % all.length];
+---
+
+<Layout
+  lang={lang}
+  title={`${title} — ${profile.name}`}
+  description={summary}
+  altHref={projectPath(otherLang(lang), slug)}
+  type="article"
+>
+  <article class="mx-auto max-w-3xl px-4 py-12 sm:px-6 sm:py-16">
+    <a href={`${homePath(lang)}#projects`} class="text-sm font-medium text-muted hover:text-accent">
+      ← {t.project.back}
+    </a>
+
+    <h1 class="mt-6 text-3xl font-bold tracking-tight text-balance sm:text-5xl">{title}</h1>
+    <p class="mt-4 text-lg leading-relaxed text-muted">{summary}</p>
+
+    <dl class="mt-8 grid grid-cols-2 gap-6 border-y border-border py-6 text-sm sm:grid-cols-3">
+      <div>
+        <dt class="text-muted">{t.project.role}</dt>
+        <dd class="mt-1 font-medium">{role}</dd>
+      </div>
+      <div>
+        <dt class="text-muted">{t.project.year}</dt>
+        <dd class="mt-1 font-medium">{year}</dd>
+      </div>
+      <div class="col-span-2 sm:col-span-1">
+        <dt class="text-muted">{t.project.stack}</dt>
+        <dd class="mt-2"><Tags tags={tags} /></dd>
+      </div>
+    </dl>
+
+    {
+      (demo || repo) && (
+        <div class="mt-6 flex flex-wrap gap-3">
+          {demo && (
+            <a
+              href={demo}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="rounded-lg bg-accent px-4 py-2.5 text-sm font-semibold text-accent-fg hover:opacity-90"
+            >
+              {t.projects.demo} ↗
+            </a>
+          )}
+          {repo && (
+            <a
+              href={repo}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="rounded-lg border border-border bg-surface px-4 py-2.5 text-sm font-semibold hover:border-accent hover:text-accent"
+            >
+              {t.projects.code} ↗
+            </a>
+          )}
+        </div>
+      )
+    }
+
+    <img
+      src={cover}
+      alt={coverAlt}
+      width="1280"
+      height="720"
+      class="mt-10 w-full rounded-2xl border border-border"
+    />
+
+    <div
+      class="prose prose-zinc mt-12 max-w-none dark:prose-invert prose-headings:tracking-tight prose-a:text-accent prose-li:marker:text-accent prose-code:rounded prose-code:bg-surface prose-code:px-1.5 prose-code:py-0.5 prose-code:font-medium prose-code:before:content-none prose-code:after:content-none prose-img:mx-auto prose-img:max-h-[36rem] prose-img:rounded-xl prose-img:border prose-img:border-border"
+    >
+      <Content />
+    </div>
+
+    {
+      next && next.id !== entry.id && (
+        <a
+          href={projectPath(lang, slugOf(next.id))}
+          class="group mt-16 block rounded-2xl border border-border bg-surface p-6 transition hover:border-accent"
+        >
+          <p class="text-sm text-muted">{t.project.next}</p>
+          <p class="mt-1 text-xl font-semibold group-hover:text-accent">{next.data.title} →</p>
+        </a>
+      )
+    }
+  </article>
+</Layout>

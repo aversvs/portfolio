@@ -1,0 +1,63 @@
+---
+import { ui, type Lang } from '../i18n/ui';
+import { content, profile } from '../data/profile';
+import SocialLinks from './SocialLinks.astro';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = ui[lang];
+const c = content[lang];
+---
+
+<section class="relative overflow-hidden">
+  <div aria-hidden="true" class="pointer-events-none absolute inset-0 -z-10">
+    <div class="blob absolute -top-32 right-[-10%] size-[28rem] rounded-full bg-accent/25 blur-3xl"></div>
+    <div class="blob absolute top-40 left-[-15%] size-[22rem] rounded-full bg-orange-400/15 blur-3xl [animation-delay:-7s]"></div>
+  </div>
+
+  <div class="mx-auto max-w-5xl px-4 pt-16 pb-24 sm:px-6 sm:pt-24 sm:pb-28">
+    <div class="flex items-center gap-5">
+      <img
+        src={profile.photo}
+        alt=""
+        width="96"
+        height="96"
+        class="size-16 shrink-0 rounded-full border-2 border-accent/40 object-cover sm:size-24"
+      />
+      <div>
+        <h1 class="text-4xl font-bold tracking-tight text-balance sm:text-6xl">{profile.name}</h1>
+        <p class="mt-1 font-medium text-accent sm:text-lg">{c.role}</p>
+      </div>
+    </div>
+
+    <p class="mt-8 max-w-3xl text-2xl font-semibold tracking-tight text-balance sm:text-3xl">{c.headline}</p>
+    <div class="mt-6 max-w-3xl space-y-4 leading-relaxed text-muted sm:text-lg">
+      {c.intro.map((paragraph) => <p>{paragraph}</p>)}
+    </div>
+
+    <div class="mt-10 flex flex-wrap items-center gap-3">
+      <a
+        href="#projects"
+        class="rounded-lg bg-accent px-5 py-3 font-semibold text-accent-fg shadow-sm transition hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+      >
+        {t.hero.viewProjects}
+      </a>
+      <a
+        href={profile.resume[lang]}
+        download
+        class="inline-flex items-center gap-2 rounded-lg border border-border bg-surface px-5 py-3 font-semibold transition hover:border-accent hover:text-accent"
+      >
+        <svg class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v11m0 0-4-4m4 4 4-4M5 20h14" />
+        </svg>
+        {t.hero.resume}
+      </a>
+      <div class="ml-1">
+        <SocialLinks size="md" />
+      </div>
+    </div>
+  </div>
+</section>
