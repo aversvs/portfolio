@@ -36,7 +36,7 @@ export const ui = {
     skills: { title: 'Competenze' },
     experience: { title: 'Esperienza' },
     contact: {
-      title: 'Ci parliamo?',
+      title: 'Parliamone?',
       text: 'Hai un progetto in mente o vuoi semplicemente fare due chiacchiere? Scrivimi.',
       emailMe: "Inviami un'email",
       name: 'Nome',
@@ -80,7 +80,7 @@ export const ui = {
     skills: { title: 'Skills' },
     experience: { title: 'Experience' },
     contact: {
-      title: "Shall we talk?",
+      title: "Let's talk",
       text: 'Have a project in mind or just want to chat? Drop me a line.',
       emailMe: 'Send an email',
       name: 'Name',
