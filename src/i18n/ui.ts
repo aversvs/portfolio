@@ -32,7 +32,6 @@ export const ui = {
       code: 'Codice',
       caseStudy: 'Leggi il case study',
     },
-    background: { languages: 'Lingue', education: 'Formazione' },
     skills: { title: 'Competenze' },
     experience: { title: 'Esperienza' },
     contact: {
@@ -76,7 +75,6 @@ export const ui = {
       code: 'Code',
       caseStudy: 'Read case study',
     },
-    background: { languages: 'Languages', education: 'Education' },
     skills: { title: 'Skills' },
     experience: { title: 'Experience' },
     contact: {

@@ -17,8 +17,6 @@ export const content: Localized<{
   headline: string;
   intro: string[];
   seoDescription: string;
-  languages: { name: string; level: string }[];
-  education: string[];
   skills: { group: string; items: string[] }[];
   experience: { company: string; role: string; period: string; location?: string; highlights: string[] }[];
 }> = {
@@ -33,17 +31,6 @@ export const content: Localized<{
     ],
     seoDescription:
       'Thiago Fuganti, Senior Front-End Developer (React, TypeScript) con oltre 20 anni di esperienza in interfacce accessibili e performanti. Progetti e contatti.',
-    languages: [
-      { name: 'Portoghese', level: 'Madrelingua' },
-      { name: 'Italiano', level: 'Fluente' },
-      { name: 'Inglese', level: 'Professionale' },
-      { name: 'Spagnolo', level: 'Professionale' },
-    ],
-    education: [
-      'Universidade de São Paulo — Letras, Ciências Humanas',
-      'SENAC — Formazione Web Designer',
-      'Impacta — Corsi di HTML e CSS',
-    ],
     skills: [
       {
         group: 'Front-end',
@@ -129,17 +116,6 @@ export const content: Localized<{
     ],
     seoDescription:
       'Thiago Fuganti, Senior Front-End Developer (React, TypeScript) with over 20 years of experience building accessible, high-performance interfaces. Projects and contact.',
-    languages: [
-      { name: 'Portuguese', level: 'Native' },
-      { name: 'Italian', level: 'Fluent' },
-      { name: 'English', level: 'Professional' },
-      { name: 'Spanish', level: 'Professional' },
-    ],
-    education: [
-      'Universidade de São Paulo — Letters (Languages and Literature)',
-      'SENAC — Web Designer training',
-      'Impacta — HTML and CSS courses',
-    ],
     skills: [
       {
         group: 'Front-end',

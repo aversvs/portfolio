@@ -81,7 +81,7 @@ npm run dev
 | What | Where |
 | --- | --- |
 | Name, email, social links, photo, résumé | `src/data/profile.ts` (`profile`) |
-| Role, intro, skills, experience, languages, education | `src/data/profile.ts` (`content`) |
+| Role, intro, skills, experience | `src/data/profile.ts` (`content`) |
 | Interface labels (buttons, section titles) | `src/i18n/ui.ts` |
 | Projects and case studies | `src/content/projects/it/*.md` and `en/*.md` |
 | Theme colors | `src/styles/global.css` (`:root` and `.dark`) |
